@@ -1,19 +1,19 @@
 def main():
     frankenstein = "books/frankenstein.txt"
     book_content = read_book(frankenstein)
-    count_words(book_content)
-    count_characters(book_content)
+    word_count = count_words(book_content)
+    characters = count_characters(book_content)
+    book_report(frankenstein, word_count, characters)
 
 def read_book(book_path):
     with open(book_path) as book:
         content = book.read()
-        print(content)
         return content
 
 def count_words(book_content):
     words = book_content.split()
     word_count = len(words)
-    print(f"{word_count} words counted in this text.")
+    return word_count
 
 def count_characters(book_content):
     book_string = book_content.lower()
@@ -23,6 +23,10 @@ def count_characters(book_content):
             characters[character] += 1
         else:
             characters[character] = 1
-    print(characters)
+    return characters
+
+def book_report(book_path, word_count, characters):
+    print(f"--- Begin report of {book_path} ---")
+    print(f"{word_count} words found in the document")
 
 main()
