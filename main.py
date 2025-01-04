@@ -32,9 +32,12 @@ def book_report(book_path, word_count, characters):
     character_sort = []
     for character in characters:
         character_sort.append({"character": character, "count": characters[character]})
-    #character_sort.sort(reverse=True)
+    character_sort.sort(reverse=True, key=sort_on)
     for dict in character_sort:
         if dict["character"].isalpha():
             print(f"The '{dict["character"]}' character was found {dict["count"]} times")
+
+def sort_on(dict):
+    return dict["count"]
 
 main()
